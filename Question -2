@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Staircase {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the number of coins (n): ");
+        int n = scanner.nextInt();
+        
+        int completeRows = arrangeCoins(n);
+        
+        System.out.println("Number of complete rows: " + completeRows);
+    }
+    
+    public static int arrangeCoins(int n) {
+        int left = 0;
+        int right = n;
+        
+        while (left <= right) {
+            long mid = left + (right - left) / 2;
+            long curr = (mid * (mid + 1)) / 2;
+            
+            if (curr == n) {
+                return (int)mid;
+            }
+            
+            if (curr > n) {
+                right = (int)mid - 1;
+            } else {
+                left = (int)mid + 1;
+            }
+        }
+        
+        return right;
+    }
+}
