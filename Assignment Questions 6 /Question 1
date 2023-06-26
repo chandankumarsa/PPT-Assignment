@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class ReconstructPermutation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the string representation of the permutation: ");
+        String s = scanner.nextLine();
+        
+        int[] permutation = reconstructPermutation(s);
+        
+        System.out.println("Reconstructed permutation: " + Arrays.toString(permutation));
+    }
+    
+    public static int[] reconstructPermutation(String s) {
+        int n = s.length();
+        int[] permutation = new int[n + 1];
+        int minNum = 0;
+        int maxNum = n;
+        
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == 'I') {
+                permutation[i] = minNum++;
+            } else {
+                permutation[i] = maxNum--;
+            }
+        }
+        
+        permutation[n] = minNum; // or maxNum, both are the same
+        
+        return permutation;
+    }
+}
